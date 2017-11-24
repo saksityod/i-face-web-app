@@ -23,11 +23,11 @@ var getConfigDataFn = function(){
 			$("#matchingPicturePathText").val(data[1][2].replace(/\\/g, "\\\\"));
 			$("#matchingConfidenceText").val(data[2][2].replace(/\\/g, "\\\\"));
 			$("#cameraIPText").val(data[3][2].replace(/\\/g, "\\\\"));
-			
+			/*
 			$("#urlDbText").val(data[4][2].replace(/\\/g, "\\\\"));
 			$("#usernameDbText").val(data[5][2].replace(/\\/g, "\\\\"));
 			$("#passwordDbText").val(data[6][2].replace(/\\/g, "\\\\"));
-			
+			*/
 			
 
 		}
@@ -127,66 +127,67 @@ var message="";
 	});
 	
 	/*Set Database Connection Start*/
-	$.ajax({
-		url:"../Model/mConfig.jsp",
-		type:"post",
-		dataType:"json",
-		data:{
-			"paramValue":$("#urlDbText").val(),
-			"action":"updateUrlDb",
-		},
-		headers:{Authorization:"Bearer "+sessionStorage.getItem('galbalToken')},
-		async:false,
-		success:function(data){
-			//console.log(data);
-			if(data=="success"){
-				console.log("updateUrlDb ok");
-				//alert("Saved.");
-			}else{
-				message+="Save to URL error.\n";
-			}
-		}
-	});
-	$.ajax({
-		url:"../Model/mConfig.jsp",
-		type:"post",
-		dataType:"json",
-		data:{
-			"paramValue":$("#usernameDbText").val(),
-			"action":"updateUserDb",
-		},
-		headers:{Authorization:"Bearer "+sessionStorage.getItem('galbalToken')},
-		async:false,
-		success:function(data){
-			//console.log(data);
-			if(data=="success"){
-				console.log("updateUserDb ok");
-				//alert("Saved.");
-			}else{
-				message+="Save to Username error.\n";
-			}
-		}
-	});
-	$.ajax({
-		url:"../Model/mConfig.jsp",
-		type:"post",
-		dataType:"json",
-		data:{
-			"paramValue":$("#passwordDbText").val(),
-			"action":"updatePasswordDb",
-		},
-		headers:{Authorization:"Bearer "+sessionStorage.getItem('galbalToken')},
-		async:false,
-		success:function(data){
-			//console.log(data);
-			if(data=="success"){
-				console.log("updatePasswordDb ok");
-				//alert("Saved.");
-			}else{
-				message+="Save to Password error.\n";
-			}
-		}
-	});
+//	
+//	$.ajax({
+//		url:"../Model/mConfig.jsp",
+//		type:"post",
+//		dataType:"json",
+//		data:{
+//			"paramValue":$("#urlDbText").val(),
+//			"action":"updateUrlDb",
+//		},
+//		headers:{Authorization:"Bearer "+sessionStorage.getItem('galbalToken')},
+//		async:false,
+//		success:function(data){
+//			//console.log(data);
+//			if(data=="success"){
+//				console.log("updateUrlDb ok");
+//				//alert("Saved.");
+//			}else{
+//				message+="Save to URL error.\n";
+//			}
+//		}
+//	});
+//	$.ajax({
+//		url:"../Model/mConfig.jsp",
+//		type:"post",
+//		dataType:"json",
+//		data:{
+//			"paramValue":$("#usernameDbText").val(),
+//			"action":"updateUserDb",
+//		},
+//		headers:{Authorization:"Bearer "+sessionStorage.getItem('galbalToken')},
+//		async:false,
+//		success:function(data){
+//			//console.log(data);
+//			if(data=="success"){
+//				console.log("updateUserDb ok");
+//				//alert("Saved.");
+//			}else{
+//				message+="Save to Username error.\n";
+//			}
+//		}
+//	});
+//	$.ajax({
+//		url:"../Model/mConfig.jsp",
+//		type:"post",
+//		dataType:"json",
+//		data:{
+//			"paramValue":$("#passwordDbText").val(),
+//			"action":"updatePasswordDb",
+//		},
+//		headers:{Authorization:"Bearer "+sessionStorage.getItem('galbalToken')},
+//		async:false,
+//		success:function(data){
+//			//console.log(data);
+//			if(data=="success"){
+//				console.log("updatePasswordDb ok");
+//				//alert("Saved.");
+//			}else{
+//				message+="Save to Password error.\n";
+//			}
+//		}
+//	});
 	/*Set Database Connection End*/
 	
 	if(message!=""){

@@ -82,6 +82,7 @@
 		
 		                   <div class="col-lg-8"><input type="text" placeholder="Camera IP" class="form-control" id="cameraIPText"></div>
 		               </div>
+		               <!-- 
 		               <h4>
 		               Database Config
 		               </h4>
@@ -99,7 +100,7 @@
 		
 		                   <div class="col-lg-8"><input type="text" placeholder="Password" class="form-control" id="passwordDbText"></div>
 		               </div>
-		               
+		                -->
 								               
 		         </div>
 		         
