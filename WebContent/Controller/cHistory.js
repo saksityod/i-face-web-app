@@ -42,7 +42,7 @@ var listHistoryDataFn = function(data){
 				html+="Picture from Watch List ";
 					html+="</div>";
 						html+="<div class=\"panel-body\">";
-						html+="<img src='../uploads/profile_picture/"+indexEntry[5]+"' width=\"305px;\">";
+						html+="<img src='" + indexEntry[4] + "/" +indexEntry[5]+"' width=\"305px;\">";
 					html+="</div>";
                              
 					html+="</div>";
@@ -54,7 +54,7 @@ var listHistoryDataFn = function(data){
 						html+="<i class=\"fa fa-warning\"></i>Capture Picture from Camera (<b style='color:green;'>"+parseFloat(indexEntry[3]).toFixed(2)+"%</b>) ";
 						html+="</div>";
 							html+="<div class=\"panel-body\">";
-							html+=" <img src='../uploads/matching_picture/"+indexEntry[2]+"' width=\"305px;\">";
+							html+=" <img src='" + indexEntry[1] + "/" +indexEntry[2]+"' width=\"305px;\">";
 					html+="</div>";
 						html+="</div>";
 						html+="</div>";

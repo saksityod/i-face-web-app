@@ -32,7 +32,7 @@
     
     <!-- test start -->
    	
-	 <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" global="jdbc/jndiDB2" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/jndiDB2" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/iface_tech_db?characterEncoding=UTF-8" username="root"/>
+	 <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" global="jdbc/jndiDB2" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/jndiDB2" password="wvga:gm8" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/iface_tech_db?characterEncoding=UTF-8" username="root"/>
 	 
 	<!-- test end -->
 	<!-- production start-->

@@ -20,9 +20,9 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.GregorianCalendar" %>
-<body style='background:#2f4050; padding:0px;margin:0px'>
+
 <%  
-String token = request.getParameter("token"); 
+//String token = request.getParameter("token"); 
 String profileID = request.getParameter("profileID"); 
 
 String profilePicturePath = request.getParameter("profilePicturePath"); 
@@ -39,14 +39,15 @@ out.println(createBy);
     String fileSavePath_sec_storage_user_dir;
     String fileSavePath_upload_matching_dir;
     //String user_name = profileID;
-	connectionJndi jndiPath = new connectionJndi();
-	String  query_config_path="SELECT * FROM PARAMETER_CONFIG WHERE PARAM_NAME='profile_picture_path'"; 
-	String columns_path="3";
+	
+	connectionJndi jndi = new connectionJndi();
+	String  query_config="SELECT * FROM PARAMETER_CONFIG WHERE PARAM_NAME='matching_picture_path'"; 
+	String columns="3";
 
-	jndiPath.selectSingleValueNT(query_config_path, columns_path);	
+	jndi.selectSingleValueNT(query_config, columns);	
 	
 
-	String url = jndiPath.getDataString();
+	String url = jndi.getDataString();
 	url = url.substring(url.lastIndexOf("/") + 1, url.length());
   // out.println(url);
 	
@@ -63,13 +64,14 @@ out.println(createBy);
     int counter=0;    
 
     fileSavePath_upload_dir = getServletContext().getRealPath("/") + File.separator + UPLOAD_DIRECTORY;/*save uploaded files to a 'Upload' directory in the web app*/
+
     fileSavePath_upload_user_dir = fileSavePath_upload_dir + File.separator + user_image_dir;
-	//out.println(fileSavePath_upload_user_dir);
     fileSavePath_upload_matching_dir = fileSavePath_upload_dir + File.separator + matching_pic;
     fileSavePath_sec_storage_user_dir = sec_storage_images_path + File.separator + user_name;
+
     
     /*sql management*/
-    connectionJndi jndi = new connectionJndi();
+  //  connectionJndi jndi = new connectionJndi();
 	
 	    
 	    
@@ -126,26 +128,15 @@ out.println(createBy);
                 if (null != name) 
                 {
                 	
-                //insert flie name to image start
-               	String  query_config="SELECT * FROM PARAMETER_CONFIG WHERE PARAM_NAME='profile_picture_path'"; 
-			    String columns="3";
-			    jndi.selectSingleValue(query_config, columns ,token);
-			   // out.println(jndi.getDataString());
-			    
-			    profilePicturePath=jndi.getDataString().replace("\\", "\\\\");;
-			    
-			   
-			    
-    
-                //out.println(profilePicturePath);
-                
+
+
                 
                 
                 String pictureName=""+user_name+"_"+currentDateTime2+"_"+counter+".png";
               	String  query="INSERT INTO"; 
               			query+=" BLACKLIST_PICTURE(PROFILE_ID,NAME,PATH,FILE_NAME,CREATED_DATE,CREATED_BY,UPDATED_DATE,UPDATED_BY)";
               			query+=" VALUES('"+profileID+"','"+pictureName+"','"+profilePicturePath+"','"+pictureName+"','"+currentDateTime+"','"+createBy+"','"+currentDateTime+"','"+createBy+"')";
-			    jndi.queryDwh(query, token);
+			  //  jndi.queryDwh(query, token);
 			    //out.println(jndi.getData());
                 	//c:\Program files\Tomcat\apache-tomcat-7.0.78\webapps\IFACETech\profile_picture
                 	//profilePicturePath
@@ -158,7 +149,7 @@ out.println(createBy);
                      //fPart.writeTo(new File(fileSavePath_upload_user_dir+"/"+user_name+"_"+counter+".png"));
                   	
                     //out.println("step32="+destinationFile);
-                    
+                   out.println(pictureName);
                     counter++;
                 }else{
                     resp = "<br>The user did not upload a file for this part.";
@@ -173,7 +164,7 @@ out.println(createBy);
         out.println(ioe.getMessage());
     }  
     
-	out.println("<script>window.location='/IFACETech/admin/#/pages/enrollment'</script>");
+	//out.println("<script>window.location='/IFACETech/admin/#/pages/enrollment'</script>");
   
    // Delete file start
    
@@ -186,4 +177,3 @@ out.println(createBy);
     */
    
 %>
-</body>

@@ -99,7 +99,7 @@ var delEnrollmentFn = function(profileID){
 			
 		},
 		error: function (error) {
-			alert("Unable to delete file: being used by another program.");
+			alert("ไม่สามารถลบได้เนื่องจากมีรูปที่ใช้งานอยู่");
 		}
 	});
 }
@@ -149,7 +149,7 @@ var listBacklistPictureFn = function(data){
 	$.each(data,function(index,indexEntry){
 		html+="<div style='float:left;'>";
 		html+="<i id='picture-"+indexEntry[2]+"-"+indexEntry[3]+"-"+indexEntry[1]+"'  class=\"fa fa-trash-o delImage picture-"+indexEntry[2]+"-"+indexEntry[3]+"\" style='cursor:pointer; float:right;'></i><br>";
-		html+="<img  src='../uploads/profile_picture/"+indexEntry[1]+"' width=\"210px;\">";
+	html+="<img  src='" + indexEntry[0] + "/" +indexEntry[1]+"' width=\"210px;\">";
 		
 		html+="</div>";
 	});
@@ -183,11 +183,11 @@ var listBacklistPictureFn = function(data){
 					//picture-103-31-profile_picture_20170924200556_3.png
 					$(".picture-"+pictureID+"-"+profileID).parent().remove();
 				}else{
-					alert("Can't to delete.");
+					alert("ไม่สามารถลบได้");
 				}
 				
 			},error: function (error) {
-				alert("Unable to delete file: being used by another program.");
+				alert("ไม่สามารถลบได้เนื่องจากมีรูปที่ใช้งานอยู่");
 			}
 		});
 		
@@ -369,7 +369,7 @@ var listEnrollmentDataFn = function(data){
 	$(".del").click(function(){
 		var id=this.id.split("-");
 		id=id[1];
-		if(confirm("Do you want to Delete this data.")){
+		if(confirm("คุณต้องการลบข้อมูลนี้หรือไม่")){
 			delEnrollmentFn(id);	
 			//delPictureEnrollmentFn(id);
 		}

@@ -21,7 +21,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 
-
+//test
 
 public class connectionJndi {
 	private static Logger logger=Logger.getLogger("connectionJndi");
@@ -158,6 +158,63 @@ public class connectionJndi {
 	    		
 	    		dataObject="{\"status\":\"400\",\"errorMassage\":\"not token.\"}";
 	    	}	      
+	    }catch(Exception e) {
+	    	dataObject="{\"status\":\"400\",\"errorMassage\":\"error\"}";	
+	      e.printStackTrace();
+	      logger.error("erorr"+e);
+	    }
+	 }
+  
+  public  void selectSingleValueNT(String query,String columns) { 		
+/*
+	  Context initContext = new InitialContext();
+	  Context envContext  = (Context)initContext.lookup("java:/comp/env");
+	  DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+	  Connection conn = ds.getConnection();
+*/
+	  
+	  dataString="";
+	    try{
+	    
+	    		
+	    	
+				      Context initContext = new InitialContext();
+				      if(initContext == null ) 
+				          throw new Exception("Boom - No Context");
+				      Context envContext  = (Context)initContext.lookup("java:/comp/env");
+				      DataSource ds = 
+				            (DataSource)envContext.lookup(
+				               "jdbc/jndiDB2");
+			
+				      if (ds != null) {
+				        Connection conn = ds.getConnection();
+				              
+				        if(conn != null)  {
+				        	dataObject="";
+				            Statement stmt = conn.createStatement();
+				            ResultSet rst = 
+				                stmt.executeQuery(query);
+				            String[] fieldSplit=columns.split(",");
+				            
+				          
+				            
+				            	
+				            while(rst.next()) {
+				            	
+				           
+				            	for(int i=0;i<fieldSplit.length;i++){
+				            		
+				            		dataString=rst.getString(Integer.parseInt(fieldSplit[i]));
+				            		
+				            	}
+				            	
+			
+				            }
+				            
+				            conn.close();
+				        }
+				      }
+				              
 	    }catch(Exception e) {
 	    	dataObject="{\"status\":\"400\",\"errorMassage\":\"error\"}";	
 	      e.printStackTrace();
@@ -303,6 +360,59 @@ public class connectionJndi {
 		    
   }
  
+  public void queryApp(String query){
+	  try{
+		
+    		
+	      Context initContext = new InitialContext();
+	      if(initContext == null ) 
+	          throw new Exception("Boom - No Context");
+	      Context envContext  = (Context)initContext.lookup("java:/comp/env");
+	      DataSource ds = 
+	            (DataSource)envContext.lookup(
+	               "jdbc/jndiDB2");
+
+	      if (ds != null) {
+	        Connection conn = ds.getConnection();
+	              
+	        if(conn != null)  {
+	        	dataObject="";
+	            Statement stmt = conn.createStatement();
+	            int rst=0;
+	            try{
+	            	 
+	            	  rst = stmt.executeUpdate(query);
+	            	  dataObject="[\"success\"]";
+	            	  /*
+	            	  if(rst>0) {
+			            	System.out.println("ok");
+			            	dataObject="[\"success\"]";
+		
+			            }else{
+			            	System.out.println("error2");
+			            	System.out.println(rst);
+			            	dataObject="[\"notSuccess\"]";
+			            	
+			            }
+			            */
+	            }catch(Exception e){
+	            	e.printStackTrace();
+	            	System.out.println(e);
+	            	dataObject=e;
+	            	//System.out.println("insert error1");
+	            }
+	            conn.close();
+	        }
+	      }
+		      
+
+		  
+	    }catch(Exception e) {
+	      e.printStackTrace();
+	      logger.error("erorr"+e);
+	    }
+		    
+  }
 
 
   

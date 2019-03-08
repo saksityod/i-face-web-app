@@ -16,6 +16,51 @@
     margin-bottom: 0px;
 }
 
+[data-tip] {
+	position:relative;
+
+}
+[data-tip]:before {
+	content:'';
+	/* hides the tooltip when not hovered */
+	display:none;
+	content:'';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #1a1a1a;	
+	position:absolute;
+	top:0px;
+	left:35px;
+	z-index:8;
+	font-size:0;
+	line-height:0;
+	width:0;
+	height:0;
+}
+[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:-40px;
+	left:0px;
+	padding:20px 32px;
+	background:#1a1a1a;
+	color:#fff;
+	z-index:9;
+	font-size: 1em;
+	height:18px;
+	line-height:0px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	white-space:nowrap;
+	word-wrap:normal;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+	display:block;
+}
+
 </style>	
                             
 
@@ -68,20 +113,20 @@
 		               <hr>
 		               <div class="form-group"><label class="col-lg-4 control-label">Profile Picture Path</label>
 		
-		                   <div class="col-lg-8"><input type="text" placeholder="Profile Picture Path" class="form-control" id="profilePicturePathText"></div>
+		                   <div class="col-lg-8" data-tip="สามารถเปลี่ยนได้แค่ส่วนที่เป็น IP Address และ Path หลัง uploads/"><input type="text" placeholder="Profile Picture Path" class="form-control" id="profilePicturePathText"></div>
 		               </div>
 		               <div class="form-group"><label class="col-lg-4 control-label">Matching Picture Path</label>
 		
-		                   <div class="col-lg-8"><input type="text" placeholder="Matching Picture Path" class="form-control" id="matchingPicturePathText"></div>
+		                   <div class="col-lg-8" data-tip="สามารถเปลี่ยนได้แค่ส่วนที่เป็น IP Address และ Path หลัง uploads/"><input type="text" placeholder="Matching Picture Path" class="form-control" id="matchingPicturePathText"></div>
 		               </div>
 		               <div class="form-group"><label class="col-lg-4 control-label">Matching Confidence</label>
 		
 		                   <div class="col-lg-8"><input type="text" placeholder="Matching Confidence" class="form-control" id="matchingConfidenceText"></div>
 		               </div>
-		               <div class="form-group"><label class="col-lg-4 control-label">Camera IP</label>
+		               <!--div class="form-group"><label class="col-lg-4 control-label">Camera IP</label>
 		
 		                   <div class="col-lg-8"><input type="text" placeholder="Camera IP" class="form-control" id="cameraIPText"></div>
-		               </div>
+		               </div-->
 		               <!-- 
 		               <h4>
 		               Database Config

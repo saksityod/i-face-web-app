@@ -23,6 +23,7 @@
         <version>7</version>
     </parent>
 
+
      <groupId>IFACETech</groupId>
 	 <artifactId>IFACETech</artifactId>
 	 <version>0.0.1-SNAPSHOT</version>
@@ -193,7 +194,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        
+
        
         
         
@@ -237,6 +238,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
